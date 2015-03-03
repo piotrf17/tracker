@@ -1,0 +1,36 @@
+body {
+    background-color: #fce967;
+    font-family: Helvetica, sans-serif;
+}
+div#main {
+    background-color: #ffffff;
+    margin: auto;
+    width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.center {
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    background-color: #70b7ba;
+    border-radius: 15px;
+    border: 0px;
+    padding: 10px 40px;
+    margin: 10px;
+    width: 600px;
+}
+li:hover {
+    background-color: #3d4c53;
+}
+hr {
+    border: 0;
+    height: 5px;
+    background-color: #f1433f;
+}
+#remaining {
+    font-weight: bold;
+}

@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/tracker.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <div id="main">
+      <h1 class="center">Time Tracker</h1>
+      <table>
+	<tr>
+	  <td>Timer</td>
+	  <td>Start</td>
+	  <td>Stop</td>
+	  <td>Current Time</td>
+	  <td>Total Time</td>
+	  <td>Budgeted</td>
+        </tr>
+	{% for timer in timers %}
+        <tr>
+ 	  <td>{{ timer.name }}</td>
+	  {% if timer.running %}
+	    <td>
+	      <button onclick="start_timer('{{ timer.name }}')"
+		      id="{{ timer.name }}_start"
+		      disabled>Start</button>
+	    </td>
+  	    <td>
+	      <button onclick="stop_timer('{{ timer.name }}')"
+		      id="{{ timer.name }}_stop">Stop</button>
+	    </td>
+	  {% else %}
+	    <td>
+	      <button onclick="start_timer('{{ timer.name }}')"
+		      id="{{ timer.name }}_start">Start</button>
+	    </td>
+  	    <td>
+	      <button onclick="stop_timer('{{ timer.name }}')"
+		      id="{{ timer.name }}_stop"
+		      disabled>Stop</button>
+	    </td>
+	  {% endif %}
+	  <td id="{{ timer.name }}_current"></td>
+	  <td id="{{ timer.name }}_total"></td>
+	  <td id="{{ timer.name }}_budgeted"></td>
+	</tr>
+	{% endfor %}
+      </table>
+      <div style="display: none;">
+      {% for timer in timers %}
+      	 <div id="timer_{{ timer.name }}"
+	      data-current="{{ timer.current }}"
+	      data-total="{{ timer.total }}"
+	      data-budgeted="{{ timer.budgeted }}"
+	      data-running="{{ timer.running }}"
+	      data-start="{{ timer.start }}"
+	 </div>
+      {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
